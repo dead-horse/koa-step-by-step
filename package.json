@@ -1,0 +1,16 @@
+{
+  "name": "koa-step-by-step",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dead_horse <dead_horse@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "co-fs": "~1.2.0",
+    "koa": "~0.13.0",
+    "koa-middlewares": "~1.4.1"
+  }
+}
