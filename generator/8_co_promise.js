@@ -11,7 +11,7 @@ var co = require('co');
 function tick(time) {
   return new Promise(function (resolve) {
     setTimeout(function () {
-      resolve(time)
+      resolve(time);
     }, time);
   });
 }
