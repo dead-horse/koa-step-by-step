@@ -17,6 +17,16 @@ app.use(middlewares.bodyParser());
 app.keys = ['i', 'am', 'secret'];
 app.use(middlewares.session());
 
+app.use(function* errorHanlder(next) {
+  try {
+    yield next;
+  } catch (err) {
+    this.app.emit('error', err, this);
+    this.body = err.message;
+    this.status = err.status || 500;
+  }
+});
+
 // router
 app.use(middlewares.router(app));
 app.get('/', renderHome);
