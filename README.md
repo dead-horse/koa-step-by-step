@@ -1,7 +1,7 @@
 learn koa step by step
 ----------
 
-___Please run `npm install` to install all the dependencies first.___
+___Please run `npm install` to install all the dependencies first. Also you need node v0.11.13+ to run all the examples.___
 
 ## generator
 
