@@ -18,13 +18,9 @@ function tick(done) {
 }
 
 function* GeneratorFactory() {
-  console.log('start run...');
   yield tick;
-  console.log('tick 1 done');
   yield tick;
-  console.log('tick 2 done');
   yield tick;
-  console.log('tick 3 done');
 }
 
 function run(generator) {

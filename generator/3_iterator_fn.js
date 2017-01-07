@@ -5,6 +5,7 @@
 // tick 2 after 1000 ms
 // tick 3 after 1000 ms
 
+// only call once
 function IteratorFactory(items) {
   var iterator = {
     index: 0,
@@ -23,8 +24,9 @@ function IteratorFactory(items) {
 function run(iterator) {
   var ret = iterator.next();
   if (ret.done) return;
-  ret.value(function () {
-    run(iterator);
+  var tick = ret.value;
+  tick(function () {
+    run(iterator);// jump to line 24
   });
 }
 
@@ -36,4 +38,6 @@ function tick(done) {
   }, 1000)
 }
 
-run(IteratorFactory([tick, tick, tick]));
+//here
+run(IteratorFactory([tick, tick, tick, tick, tick]));
+
