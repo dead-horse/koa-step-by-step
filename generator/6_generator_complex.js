@@ -6,30 +6,29 @@
 // tick 2 done after 1000 ms
 // tick 3 done after 2000 ms
 
+var count = 1;
 function tick(time) {
-  return function (done) {
+  return new Promise(resolve => {
     setTimeout(function () {
-      done(null, time);
+      console.log('tick %s after %s ms', count++, time);
+      resolve();
     }, time);
-  }
+  });
 }
 
 function* GeneratorFunction() {
   var time;
   console.log('start run...');
   time = yield tick(500);
-  console.log('tick 1 done after %s ms', time);
   time = yield tick(1000);
-  console.log('tick 2 done after %s ms', time);
   time = yield tick(2000);
-  console.log('tick 3 done after %s ms', time);
 }
 
-function run(generator, err, res) {
+function run(generator, res) {
   var ret = generator.next(res);
   if (ret.done) return;
-  ret.value(function (err, res) {
-    run(generator, err, res);
+  ret.value.then(function (res) {
+    run(generator, res);
   });
 }
 

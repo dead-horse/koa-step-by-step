@@ -10,23 +10,26 @@
 // tick 3 done
 
 var count = 1;
-function tick(done) {
-  setTimeout(function () {
-    console.log('tick %s after %s ms', count++, 1000);
-    done();
-  }, 1000)
+function tick() {
+  return new Promise(resolve => {
+    setTimeout(function () {
+      console.log('tick %s after %s ms', count++, 1000);
+      resolve();
+    }, 1000);
+  });
 }
 
 function* GeneratorFactory() {
-  yield tick;
-  yield tick;
-  yield tick;
+  yield tick();
+  yield tick();
+  yield tick();
 }
 
 function run(generator) {
   var ret = generator.next();
   if (ret.done) return;
-  ret.value(function () {
+  console.log(ret.value)
+  ret.value.then(function () {
     run(generator);
   });
 }
